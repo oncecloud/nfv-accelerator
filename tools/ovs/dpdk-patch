@@ -1,0 +1,23 @@
+# Copyright (2016, 2017) Institute of Software, Chinese Academy of Siences
+# Author : wuheng@otcaix.iscas.ac.cn
+# Date   : 2016-11-26
+
+#update openvswitch.ko
+function updateOVS
+{
+	rmmod openvswitch
+ 	ovs=$(lsmod | awk '{print $1}' | grep openvswitch | wc | awk '{print $1}')
+  	if [ $ovs -ne 0 ]; then
+		return 0
+  	else
+		uname=$(uname -r)
+		location=/usr/lib/modules/$uname/extra/
+		\cp -r /cba/ovs2.7.0-dpdk17.02-patch/openvswitch.ko $location/openvswitch.ko
+		modprobe openvswitch
+		return 1
+  	fi
+}
+
+updateOVS
+
+
