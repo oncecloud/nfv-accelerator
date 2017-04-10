@@ -30,13 +30,14 @@ Vendor: Nicira, Inc.
 Version: 2.7.0
 
 License: ASL 2.0
-Release: ostack%{?dist}
+Release: ostack.kni%{?dist}
 Source: openvswitch-%{version}.tar.gz
 Buildroot: /tmp/openvswitch-rpm
 Requires: logrotate, hostname, python >= 2.7, python-six, dpdk >= 17.02
 BuildRequires: python-six
 BuildRequires: openssl-devel
 BuildRequires: checkpolicy, selinux-policy-devel
+BuildRequires: dpdk >= 17.02
 
 %bcond_without check
 %bcond_with check_datapath_kernel
@@ -68,7 +69,6 @@ Tailored Open vSwitch SELinux policy
 %build
 ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=%{_localstatedir} \
     --libdir=%{_libdir} --with-dpdk=/cba/dpdk-17.02/x86_64-native-linuxapp-gcc
-
 make %{_smp_mflags}
 cd selinux
 make -f %{_datadir}/selinux/devel/Makefile
