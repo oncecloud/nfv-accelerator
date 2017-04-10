@@ -12,7 +12,7 @@ function updateOVS
   	else
 		uname=$(uname -r)
 		location=/usr/lib/modules/$uname/extra/
-		\cp -r /cba/ovs2.7.0-dpdk17.02-patch/openvswitch.ko $location/openvswitch.ko
+		\cp -r /cba/dpdk-patch-17.02/openvswitch.ko $location/openvswitch.ko
 		modprobe openvswitch
 		return 1
   	fi

@@ -4,7 +4,7 @@
 
 kni=$(lsmod | awk '{print $1}' | grep rte_kni | wc | awk '{print $1}')
 if [ $kni -eq 0 ]; then
-	insmod /cba/ovs2.7.0-dpdk17.02-patch-201703/rte_kni.ko
+	insmod /cba/dpdk-patch-17.02/rte_kni.ko
 fi
 
 
